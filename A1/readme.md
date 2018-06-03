@@ -1,7 +1,7 @@
 ## Quality Assurance 
 ### Assignment-1
 
-Link to Github Repo: 
+Link to Github Repo: https://github.com/kirangelli/QA-Assignment1/blob/master/A1/readme.md
 
 *Technical Specification:*
 * *Operating System:* Windows 8 (64-bit)
