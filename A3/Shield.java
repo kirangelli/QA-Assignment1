@@ -47,56 +47,25 @@ public class Shield extends BoardComponent
 	{
 		shieldHealth-= 1;
 		
-
+		
 		
 		if(shieldHealth==0)
 		{
+			System.out.println("shield is destroyed");
+			
 			//detach shield
 			BoardComponentSubject.Instance().Detach(this);
-			System.out.println("shield is hit");
-			board = GameBoard.Instance().GetBoard();
-			for (int i = 0; i < board.size(); i++)
-			{
-				
-				ArrayList<BoardComponent> row = board.get(i);
-				for (int j = 0; j < row.size(); j++)
-				{
-					if(row.get(j).equals(this))
-					{
-						 BoardComponent bc = this;
-						 bc = new SquareShieldDecorator(this);
-						 ((SquareShieldDecorator) bc).removeDecorator(bc);
-						 row.set(j, ((SquareShieldDecorator) bc));
-						 board.set(i,row);
-						 System.out.println("shield is destroyed");
-						 GameBoard.Instance().SetBoard(board);
-						 return;
-					}
-				}
-				
-				
-			}
+			
+			// remove shield decoration
+			BoardComponent sqParent  = (Square)parent;
+			((Square)sqParent).hasAShield = false;
+//			((SquareShieldDecorator)sqParent).removeDecorator(this);  
+			parent.Remove(this);
+
 		}
+		else
+		System.out.println("shield is hit but not destroyed");
 	}
 	
-	//set position of shield
-	public void setX(int X)
-	{
-		this.X = X;
-	}
-	
-	public void setY(int Y)
-	{
-		this.Y = Y;
-	}
-	
-	//get position of shield
-	public int getX()
-	{
-		return X;
-	}
-	public int getY()
-	{
-		return Y;
-	}
+
 }

@@ -14,7 +14,7 @@ public class BoardComponentSubject implements ISubject {
 		{
 			instance = new BoardComponentSubject();
 			observers = new ArrayList<IAsteroidImpactObserver>();
-//			detachingObservers = new ArrayList<IAsteroidImpactObserver>();
+
 			
 		}
 		return instance;
@@ -33,11 +33,19 @@ public class BoardComponentSubject implements ISubject {
 	}
 
 	@Override
-	public void Notify() {
+	public void Notify(ArrayList<BoardComponent> children) {
 		// TODO Auto-generated method stub
-		for(int i=0;i<observers.size();i++)
+		for(int i=0;i<children.size();i++)
 		{
-			observers.get(i).Update();
+			for(int j=0;j<observers.size();j++)
+			{
+				// if children is an observer
+				if(children.get(i).equals(observers.get(j)))
+				{
+					observers.get(j).Update();
+				}
+			}
+			
 		}
 		
 		

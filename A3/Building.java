@@ -30,14 +30,13 @@ public class Building extends BoardComponent
 
 	@Override
 	public void Update() {
-		if(this.parent.getClass() == Shield.class)
-				return;
+		
 		buildingHealth-= 1;
 		if(buildingHealth==0)
 		{
 			//detach
 //			BoardComponentSubject.Instance().Detach(this);
-			System.out.println("removing the building");
+			System.out.println("building destroyed");
 			parent.Remove(this);
 			GameBoard.Instance().DecrementBuildingCount();
 

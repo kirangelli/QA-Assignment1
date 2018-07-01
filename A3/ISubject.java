@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public interface ISubject
 {
 	// Subscribe an observer to the subject. The observer will be
@@ -10,5 +12,5 @@ public interface ISubject
 	
 	// Notify all observers of the subject that the subject
 	// event has happened.
-	public void Notify();
+	public void Notify(ArrayList<BoardComponent> children);
 }

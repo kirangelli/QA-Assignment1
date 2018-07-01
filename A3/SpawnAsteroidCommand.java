@@ -8,8 +8,17 @@ public class SpawnAsteroidCommand extends Command
 	@Override
 	public void Execute()
 	{
+		
 		// The receiver for the SpawnAsteroidCommand is the Square to spawn the asteroid in.
-		BoardComponent square = (Square) receiver;
+		BoardComponent square;
+		if((receiver.getClass()).equals(SquareShieldDecorator.class))
+		{
+			 square = (SquareShieldDecorator) receiver;
+		}
+		else
+		{
+		square = (Square) receiver;
+		}
 		// The args for SpawnAsteroidCommand are the X,Y coordinate for the asteroid
 		// used by the factory, and the height of the asteroid.
 		int height = Integer.parseInt(args[2]);

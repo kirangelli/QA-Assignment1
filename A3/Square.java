@@ -62,4 +62,11 @@ public class Square extends BoardComponent
 		shield = null;
 		System.out.println("Shield removed");
 	}
+	
+
+	public ArrayList<BoardComponent> getChildren()
+	{
+		return children;
+		
+	}
 }

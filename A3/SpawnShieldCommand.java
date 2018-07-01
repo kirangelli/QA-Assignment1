@@ -11,18 +11,27 @@ public class SpawnShieldCommand extends Command
 	@Override
 	public void Execute()
 	{
-		// The receiver for the SpawnBuildingCommand is the Square to spawn the building in.
-		Square square = (Square) receiver;
-		// The args for SpawnAsteroidCommand are the X,Y coordinate for the asteroid
+		// The receiver for the SpawnShieldCommand is the Square to spawn the building in.
+		BoardComponent square = (Square) receiver;
+		// The args for SpawnShieldCommand are the X,Y coordinate for the asteroid
 		// used by the factory, and the height of the asteroid.
 
 		IAsteroidGameFactory factory = GameBoard.Instance().GetFactory();
 		System.out.println("Spawning shield at (" + args[0] + "," + args[1]);
-//		square.Add(factory.MakeBuilding());
-//		GameBoard.Instance().IncrementBuildingCount();
+
+		Shield shield = factory.MakeShield();
 		
-		square = new SquareShieldDecorator(factory.MakeShield());
-		((SquareShieldDecorator) square).decorateComponent();
+		square = new SquareShieldDecorator(square,shield);
+		
+		
+		
+//		((SquareShieldDecorator) square).decorateComponent();
+		
+		
+		
+		//this can be removed because if the same instance is being modified,
+		//need not push it back
+		
 		board = new ArrayList<>();
 		board = GameBoard.Instance().GetBoard();
 		
@@ -31,7 +40,7 @@ public class SpawnShieldCommand extends Command
 		row =board.get(Integer.parseInt(args[0]));
 		
 		//editing element in the row
-		row.set(Integer.parseInt(args[1]),square);
+		row.set(Integer.parseInt(args[1]), square);
 		
 		//replacing the row of board with new row
 		board.set(Integer.parseInt(args[0]), row);

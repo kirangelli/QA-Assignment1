@@ -14,7 +14,7 @@ public class SpawnBuildingCommand extends Command
 		// used by the factory, and the height of the asteroid.
 
 		IAsteroidGameFactory factory = GameBoard.Instance().GetFactory();
-		System.out.println("Spawning building at (" + args[0] + "," + args[1]);
+		System.out.println("Spawning building at (" + args[0] + "," + args[1]+")");
 //		Building b = (Building) factory.MakeBuilding();
 		
 		square.Add(factory.MakeBuilding());
